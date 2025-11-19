@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  # This is the "magic" for Docker Desktop
+  # type: LoadBalancer
+  # type: ClusterIP
+  type: NodePort
+
+  selector:
+    app: nginx # This MUST match the 'app: nginx' label on your Pods
+
+  ports:
+  - protocol: TCP
+    port: 80       # The port the Service is exposed on
+    targetPort: 80 # The port on the Pod to send traffic to
